@@ -12,6 +12,9 @@ import java.util.*;
 import java.io.*;
 
 public class BinarySearchTree {
+    
+    employee root;
+    
     public static void main(String[] args) {
  String menu="";
       while(!menu.equals("s")&&!menu.equals("a")&&!menu.equals("d")&&!menu.equals("q")){
