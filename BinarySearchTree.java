@@ -39,7 +39,21 @@ public class BinarySearchTree {
         directory(root);
       }
       else if(menu.equals("a")){
-         System.out.print("add");
+       System.out.print("Provide employee ID \t");
+         int employeeID = input.nextInt();
+     
+       System.out.print("Provide First Name:\t");
+         String firstName = input.next();
+          
+       System.out.print("Provide Last Name:\t");
+        String lastName = input.next();
+          
+       System.out.print("Provide occupation:\t");
+        String occupation = input.next(); 
+
+         addEmployee(employeeID, firstName, lastName, occupation);           
+          
+
       }
       else if(menu.equals("d")){
          System.out.print("delete");
@@ -59,6 +73,29 @@ public class BinarySearchTree {
         System.out.println(root.employeeInfo());
         inOrder(root.right);
     }
+    
+     public static void addEmployee(int employeeID, String firstName, String lastName, String occupation){
+
+
+      if (root == null) {
+         root = new Employee(int employeeID, String firstName, String lastName, String occupation);
+         
+       } else if (employeeID < root.employeeID) {
+         root.left = addEmployee( employeeID,  firstName,  lastName,  occupation);
+         
+       } else if (employeeID > root.data) {
+         root.right = addEmployee( employeeID,  firstName,  lastName,  occupation);
+      } 
+ 
+     return root;
+ 
+    
+    }//end add 
+
+    
+    
+    
+    
 } // end of lab6 class
 
 class Employee {
