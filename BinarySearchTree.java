@@ -37,7 +37,7 @@ public class BinarySearchTree {
       }
 
       if(menu.equals("s")){
-         System.out.println("see");
+         directory(root);
       }
       else if(menu.equals("a")){
          System.out.print("add");
@@ -51,6 +51,16 @@ public class BinarySearchTree {
       }
 
     } // end of main
+    
+    public static void directory(Employee root) {
+        if (root == null) {
+          return;
+        } 
+        inOrder(root.left);
+        System.out.printf("%s ", node.data);
+        inOrder(root.right);
+    } // end of directory
+    
 } // end of lab6 class
 
 class Employee {
