@@ -19,8 +19,7 @@ public class BinarySearchTree {
         String menu="";
 
         // sample employee
-        Employee one = new Employee(1, "Jake", "Holmes", "Junior Software Developer");
-        System.out.println(one.EmployeeInfo());
+        Employee root = new Employee(1, "Jake", "Holmes", "Junior Software Developer");
 
       while(!menu.equals("s")&&!menu.equals("a")&&!menu.equals("d")&&!menu.equals("q")){
          System.out.println("This program will show you a list of employees in a company");
@@ -69,9 +68,9 @@ public class BinarySearchTree {
         if (root == null) {
           System.out.println("There are no employees to view");
         } 
-        inOrder(root.left);
+        directory(root.left);
         System.out.println(root.employeeInfo());
-        inOrder(root.right);
+        directory(root.right);
     }
     
      public static void addEmployee(int employeeID, String firstName, String lastName, String occupation){
@@ -85,9 +84,7 @@ public class BinarySearchTree {
          
        } else if (employeeID > root.data) {
          root.right = addEmployee( employeeID,  firstName,  lastName,  occupation);
-      } 
- 
-     return root;
+      }
  
     
     }//end add 
