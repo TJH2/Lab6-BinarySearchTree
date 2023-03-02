@@ -13,8 +13,7 @@ import java.io.*;
 
 public class BinarySearchTree {
 
-    Employee root;
-    private LinkedList employeeDirectory = new LinkedList(); // empty list
+    static Employee root;
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in); 
         String menu="";
@@ -37,7 +36,7 @@ public class BinarySearchTree {
       }
 
       if(menu.equals("s")){
-         directory(root);
+        directory(root);
       }
       else if(menu.equals("a")){
          System.out.print("add");
@@ -51,26 +50,25 @@ public class BinarySearchTree {
       }
 
     } // end of main
-    
+
     public static void directory(Employee root) {
         if (root == null) {
-          return;
+          System.out.println("There are no employees to view");
         } 
         inOrder(root.left);
-        System.out.printf("%s ", node.data);
+        System.out.println(root.employeeInfo());
         inOrder(root.right);
-    } // end of directory
-    
+    }
 } // end of lab6 class
 
 class Employee {
 
-    private int employeeID;
-    private String firstName;
-    private String lastName;
-    private String occupation;
-    private Employee left;
-    private Employee right;
+    protected int employeeID;
+    protected String firstName;
+    protected String lastName;
+    protected String occupation;
+    protected Employee left;
+    protected Employee right;
 
     public Employee(int employeeID, String firstName, String lastName, String occupation) {
         this.employeeID = employeeID;
