@@ -12,40 +12,43 @@ import java.util.*;
 import java.io.*;
 
 public class BinarySearchTree {
-    
-    private employee root;
+
+    Employee root;
     private LinkedList employeeDirectory = new LinkedList(); // empty list
-    
     public static void main(String[] args) {
- String menu="";
+        Scanner input = new Scanner(System.in); 
+        String menu="";
+
+        // sample employee
+        Employee one = new Employee(1, "Jake", "Holmes", "Junior Software Developer");
+        System.out.println(one.EmployeeInfo());
+
       while(!menu.equals("s")&&!menu.equals("a")&&!menu.equals("d")&&!menu.equals("q")){
-         Scanner input = new Scanner(System.in); 
          System.out.println("This program will show you a list of employees in a company");
          System.out.println("please selct and option: ");
          System.out.println("See all employees in search tree(s)");
          System.out.println("Add employee to search tree(a)");
          System.out.println("Delete employee from search tree (d)");
          System.out.println("quit program(q)");
-         menu = input.next();
+        if(!menu.equals("s") || !menu.equals("a") || !menu.equals("d") || !menu.equals("q")) {
+            System.out.print("Please select a valid menu option:\t");
+            menu = input.next();
+        }
       }
+
       if(menu.equals("s")){
          System.out.println("see");
       }
-      if(menu.equals("a")){
+      else if(menu.equals("a")){
          System.out.print("add");
       }
-      if(menu.equals("d")){
+      else if(menu.equals("d")){
          System.out.print("delete");
       }
-      if(menu.equals("q")){
+      else if(menu.equals("q")){
       System.out.println("thank you for your time.");
          System.exit(0);
       }
-      }
-
-        // sample employee
-        Employee one = new Employee(1, "Jake", "Holmes", "Junior Software Developer");
-        System.out.println(one.EmployeeInfo());
 
     } // end of main
 } // end of lab6 class
