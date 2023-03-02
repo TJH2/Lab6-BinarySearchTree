@@ -13,7 +13,8 @@ import java.io.*;
 
 public class BinarySearchTree {
     
-    employee root;
+    private employee root;
+    private LinkedList employeeDirectory = new LinkedList(); // empty list
     
     public static void main(String[] args) {
  String menu="";
