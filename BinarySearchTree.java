@@ -4,7 +4,7 @@
 // Assignment: Binary Search Tree
 // Reference: Chapter 17
 // Purpose: Use recursion to add/remove employees from a fictional database
-// Extra Credit:
+// Extra Credit: Iterative Employee Search Function IterativeSearch()
 
 
 
@@ -26,7 +26,7 @@ public class BinarySearchTree {
       root = addEmployee(root, 60, "David", "R-H", "Brand Manager");
       root = addEmployee(root, 55, " Ben", "D", "Graphic Design Specialist");
 
-      System.out.println("This Program Will Allow You To View And Edit The Directory Of Employees At " + company + "\n");
+      System.out.println("This Program Will Allow You To View And Edit A Directory Of Employees At " + company + "\n");
 
       menu();
 
@@ -35,29 +35,36 @@ public class BinarySearchTree {
     public static void menu() {
       String menu="";
       System.out.println("Please Select An Option:");
-      while(!menu.equals("s")&&!menu.equals("a")&&!menu.equals("d")&&!menu.equals("q")){
-         System.out.println(company + " Employee Directory(s)");
+      while(!menu.equals("s")&&!menu.equals("a")&&!menu.equals("l")&&!menu.equals("q")){
+         System.out.println("View " + company + " Employee Directory(s)");
          System.out.println("Add An Employee To The " + company + " Directory(a)");
-         System.out.println("Remove An Employee From The " + company + " Directory(d)");
+         System.out.println("Edit Specific Employee Information From The " + company + " Directory(l)");
          System.out.print("Quit Program(q)\t");
          menu = input.next().toLowerCase();
-        if(!menu.equals("s") && !menu.equals("a") && !menu.equals("d") && !menu.equals("q")) {
+        if(!menu.equals("s") && !menu.equals("a") && !menu.equals("l") && !menu.equals("q")) {
             System.out.println("\nPlease Select A Valid Menu Option:");
         }
       }
 
       if(menu.equals("s")){
+        int choice = 0;
+        System.out.print("Would You Like To View An In-Order(1), Pre-Order(2) or Post-Order(3) Display?");
+        choice = input.nextInt();
         System.out.println("\n" + company.toUpperCase() + " EMPLOYEE DIRECTORY:");
-        directoryIO(root);
+        if(choice == 1) {
+        displayIO(root);
         System.out.println();
-        //directoryPrO(root);
-        //System.out.println();
-        //directoryPO(root);
-        //System.out.println();
+        } else if(choice == 2) {
+        displayPrO(root);
+        System.out.println();
+        } else {
+        displayPO(root);
+        System.out.println();
+        }
         menu();
       }
       else if(menu.equals("a")){
-       System.out.print("Provide employee ID \t");
+       System.out.print("\nProvide employee ID \t");
          int employeeID = input.nextInt();
      
        System.out.print("Provide First Name:\t");
@@ -76,38 +83,78 @@ public class BinarySearchTree {
          
          menu();           
       }
-      else if(menu.equals("d")){
-         System.out.print("delete");
+      else if(menu.equals("l")){
+         employeeSearch();
       }
       else if(menu.equals("q")){
       System.out.println("\nThis Program Has Ended.");
          System.exit(0);
       }
     }
+    
+    // Method To Search For AN Employee
+    public static void employeeSearch(){
+      int choice;
+   
+         Employee temp = iterativeSearch();
+         if(temp == null) {
+            System.out.print("\nIt Doesn't Look Like That Employee ID Matches Any Existing Employees. Would You Like To Return To The Menu(1) Or Try Again(2)?");
+            choice = input.nextInt();
+            if(choice == 1) { menu(); }
+            else { employeeSearch(); }
+         } // end of if
+         else {
+            System.out.println("\n" + temp.employeeInfo() + "\n");
+            System.out.print("Would You Like To Remove Employee From The Directory(1), Edit Employee Information(2), Or Return To The Main Menu(3)?\t");
+            choice = input.nextInt();
+            System.out.println();
+            if(choice == 1){}
+            else if(choice == 2) {}
+            else { menu(); }
+         } // end of else
+    }
+    
+    //Iterative Method Using While Loop To Validate Employee Existance
+    public static Employee iterativeSearch() {
+      System.out.print("\nPlease Provide The ID Of The Employee You're Searching For\t");
+         int employeeID = input.nextInt();
+    
+      while(root != null) {
+        // pass right subtree as new tree
+        if (employeeID > root.employeeID)
+            root = root.right;
+        // pass left subtree as new tree
+        else if (employeeID < root.employeeID)
+            root = root.left;
+        else
+            return root; // if the ID is found
+      }
+      return null;
+    } // end of IS
 
     // Method for In Order view - working
-    public static void directoryIO(Employee root) {
+    public static void displayIO(Employee root) {
         if (root != null) {
-        directoryIO(root.left);
+        displayIO(root.left);
         System.out.println(root.employeeInfo());
-        directoryIO(root.right);
+        displayIO(root.right);
         }
     } // end IO
     
      // Method for Pre Order view - working
-     public static void directoryPrO(Employee root) {
+     public static void displayPrO(Employee root) {
         if (root != null) {
         System.out.println(root.employeeInfo());
-        directoryPrO(root.left);
-        directoryPrO(root.right);
+        displayPrO(root.left);
+        displayPrO(root.right);
         }
     } // end of PrO
     
      // Method for Post Order view - working
-     public static void directoryPO(Employee root) {
+     public static void displayPO(Employee root) {
         if (root != null) {
-        directoryPO(root.left);
-        directoryPO(root.right);
+        displayPO(root.left);
+        displayPO(root.right);
         System.out.println(root.employeeInfo());
         }
     } // end of directory
@@ -125,10 +172,6 @@ public class BinarySearchTree {
       }
       return root;
     }//end add 
-
-    
-    
-    
     
 } // end of lab6 class
 
