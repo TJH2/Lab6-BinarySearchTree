@@ -11,20 +11,22 @@
 
 
 import java.util.*;
-import java.io.*;
 
 public class BinarySearchTree {
 
-    private static Employee root;
-    static Scanner input = new Scanner(System.in);
+   static Scanner input = new Scanner(System.in);
+   private static Employee root; // root node
+   private static String company = "Arctic Gun Steel Energy Drink LLC";
+    
+    
     public static void main(String[] args) {
       //Sample Employees
-      root = addEmployee(root, 50, "Jake", "H", "Junior Software Developer");
-      root = addEmployee(root, 40, "Jaspreet", "K", "Cyber Security Specialist");
-      root = addEmployee(root, 60, "David", "R-H", "Product Manager");
+      root = addEmployee(root, 50, "Jake", "H", "Mixologist");
+      root = addEmployee(root, 40, "Jaspreet", "K", "Drink Tester");
+      root = addEmployee(root, 60, "David", "R-H", "Brand Manager");
       root = addEmployee(root, 55, " Ben", "D", "Graphic Design Specialist");
 
-      System.out.println("This Program Will Allow You To View And Edit The Directory Of Employees At Bronze Hill LLC\n");
+      System.out.println("This Program Will Allow You To View And Edit The Directory Of Employees At " + company + "\n");
 
       menu();
 
@@ -34,9 +36,9 @@ public class BinarySearchTree {
       String menu="";
       System.out.println("Please Select An Option:");
       while(!menu.equals("s")&&!menu.equals("a")&&!menu.equals("d")&&!menu.equals("q")){
-         System.out.println("See Bronze Hill Employee Directory(s)");
-         System.out.println("Add An Employee To The Bronze Hill Directory(a)");
-         System.out.println("Remove An Employee To The Bronze Hill Directory(d)");
+         System.out.println(company + " Employee Directory(s)");
+         System.out.println("Add An Employee To The " + company + " Directory(a)");
+         System.out.println("Remove An Employee From The " + company + " Directory(d)");
          System.out.print("Quit Program(q)\t");
          menu = input.next().toLowerCase();
         if(!menu.equals("s") && !menu.equals("a") && !menu.equals("d") && !menu.equals("q")) {
@@ -45,9 +47,13 @@ public class BinarySearchTree {
       }
 
       if(menu.equals("s")){
-        System.out.println("\nBRONZE HILL EMPLOYEE DIRECTORY:");
-        directory(root);
+        System.out.println("\n" + company.toUpperCase() + " EMPLOYEE DIRECTORY:");
+        directoryIO(root);
         System.out.println();
+        //directoryPrO(root);
+        //System.out.println();
+        //directoryPO(root);
+        //System.out.println();
         menu();
       }
       else if(menu.equals("a")){
@@ -61,11 +67,14 @@ public class BinarySearchTree {
         String lastName = input.next();
           
        System.out.print("Provide occupation:\t");
-        String occupation = input.nextLine(); 
+        String occupation = input.nextLine(); // extra line to change from next to nextLine
+        occupation = input.nextLine();  
 
-         root = addEmployee(root, employeeID, firstName, lastName, occupation);           
-          
-
+         root = addEmployee(root, employeeID, firstName, lastName, occupation);
+         
+         System.out.println("\n" + firstName + " " + lastName + " Has Been Successfully Added To The Directory\n");
+         
+         menu();           
       }
       else if(menu.equals("d")){
          System.out.print("delete");
@@ -76,14 +85,34 @@ public class BinarySearchTree {
       }
     }
 
-    public static void directory(Employee root) {
+    // Method for In Order view - working
+    public static void directoryIO(Employee root) {
         if (root != null) {
-        directory(root.left);
-        System.out.println("\n" + root.employeeInfo());
-        directory(root.right);
+        directoryIO(root.left);
+        System.out.println(root.employeeInfo());
+        directoryIO(root.right);
+        }
+    } // end IO
+    
+     // Method for Pre Order view - working
+     public static void directoryPrO(Employee root) {
+        if (root != null) {
+        System.out.println(root.employeeInfo());
+        directoryPrO(root.left);
+        directoryPrO(root.right);
+        }
+    } // end of PrO
+    
+     // Method for Post Order view - working
+     public static void directoryPO(Employee root) {
+        if (root != null) {
+        directoryPO(root.left);
+        directoryPO(root.right);
+        System.out.println(root.employeeInfo());
         }
     } // end of directory
     
+     // Method to add employee to directory
      public static Employee addEmployee(Employee root, int employeeID, String firstName, String lastName, String occupation) {
 
       if (root == null) {
@@ -122,7 +151,7 @@ class Employee {
     }
 
     public String employeeInfo() {
-        return "Employee Name: " + this.firstName + " " + this.lastName + "\nEmployee ID: " + this.employeeID + "\nPosition: " + this.occupation;
+        return "EMPLOYEE ID: " + this.employeeID + " - " + this.firstName + " " + this.lastName +  ", " + this.occupation;
     }
 
 } // end node class employee
