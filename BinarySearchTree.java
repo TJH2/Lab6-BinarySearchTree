@@ -109,7 +109,9 @@ public class BinarySearchTree {
             choice = input.nextInt();
             System.out.println();
             if(choice == 1){}
-            else if(choice == 2) {}
+            else if(choice == 2) {
+               editEmployee(temp);
+            }
             else { menu(); }
          } // end of else
     }
@@ -131,6 +133,39 @@ public class BinarySearchTree {
       }
       return null;
     } // end of IS
+   
+    
+    // Method to edit Employee
+    public static void editEmployee(Employee temp) {
+    String edit;
+     int finished = 1;
+     while(finished == 1){
+        System.out.print("What Information Would You Like To Update, First Name(1), Last Name(2) Or Position(3)?\t");
+        int choice = input.nextInt();
+        if(choice == 1) {
+         System.out.print("Please Provide A New First Name:\t");
+         edit = input.next();
+         temp.firstName = edit;
+        }
+        else if(choice == 2) {
+         System.out.print("Please Provide A New Last Name:\t");
+         edit = input.next();
+         temp.lastName = edit;
+        }
+        else {
+         System.out.print("Please Provide A New Position:\t");
+         edit = input.nextLine();
+         temp.position = edit;
+        }
+        
+        System.out.println("\nEmployee Information Has Been Successfully Updated!");
+        System.out.println("\n" + temp.employeeInfo());
+        System.out.print("\n Have You Completed Your Updates For This Employee? 1 = No, 2 = Yes");
+        finished = input.nextInt();
+     }
+      System.out.println();
+      menu();
+    } // end of edit
 
     // Method for In Order view - working
     public static void displayIO(Employee root) {
