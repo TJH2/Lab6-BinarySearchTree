@@ -226,21 +226,21 @@ class Employee {
     protected int employeeID;
     protected String firstName;
     protected String lastName;
-    protected String occupation;
+    protected String position;
     protected Employee left;
     protected Employee right;
 
-    public Employee(int employeeID, String firstName, String lastName, String occupation) {
+    public Employee(int employeeID, String firstName, String lastName, String position) {
         this.employeeID = employeeID;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.occupation = occupation;
+        this.position = position;
         this.left = null;
         this.right = null;
     }
 
     public String employeeInfo() {
-        return "EMPLOYEE ID: " + this.employeeID + " - " + this.firstName + " " + this.lastName +  ", " + this.occupation;
+        return "EMPLOYEE ID: " + this.employeeID + " - " + this.firstName + " " + this.lastName +  ", " + this.position;
     }
 
 } // end node class employee
