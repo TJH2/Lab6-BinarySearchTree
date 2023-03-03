@@ -108,7 +108,18 @@ public class BinarySearchTree {
             System.out.print("Would You Like To Remove Employee From The Directory(1), Edit Employee Information(2), Or Return To The Main Menu(3)?\t");
             choice = input.nextInt();
             System.out.println();
-            if(choice == 1){}
+            if(choice == 1){
+               System.out.print("Are You Sure You Want To Remove " + temp.firstName + " " + temp.lastName + " From The Directory? 1 = No, 2 = Yes");
+               choice = input.nextInt();
+               if(choice == 1) {
+                     System.out.println("\nOK, " + temp.firstName + " " + temp.lastName + " Was Not Removed.\n");
+                     menu(); 
+               } else {
+                        //remove(temp.employeeID);
+                        System.out.println("Employee Has Been Successfully Removed!");
+                        menu();
+                }
+            }
             else if(choice == 2) {
                editEmployee(temp);
             }
