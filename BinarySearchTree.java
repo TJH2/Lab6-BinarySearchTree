@@ -433,8 +433,31 @@ class Employee {
       this.right = null;
    }
 
-   public String employeeInfo() {
-      return "EMPLOYEE ID: " + this.employeeID + " - " + this.firstName + " " + this.lastName +  ", " + this.position;
-   }
+   // Accessors
+    public int employeeID() {
+      return this.employeeID;
+    }
+    public String employeeInfo() {
+        return "EMPLOYEE ID: " + this.employeeID + " - " + this.firstName + " " + this.lastName +  ", " + this.position;
+    }
+
+    // mutators
+
+    public void setEmployeeID(int employeeID) {
+      this.employeeID = employeeID;
+    }
+
+    public void setFirstName(String firstName) {
+      this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+      this.lastName = lastName;
+    }
+
+    public void setPosition(String position) {
+      this.position = position;
+    }
+
 
 } // end node class employee
