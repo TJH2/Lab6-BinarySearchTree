@@ -15,7 +15,6 @@ public class BinarySearchTree {
    private static Employee root; // root node
    private static String company = "Arctic Gun Metal Energy Drink LLC";
     
-    
    public static void main(String[] args) {
       //Sample Employees
       root = addEmployee(root, 50, "Jake", "H", "Mixologist");
@@ -96,6 +95,12 @@ public class BinarySearchTree {
             
             try{
                employeeID = input.nextInt();
+               boolean taken = checkID(employeeID, root, false);
+               while(taken == true) {
+                  System.out.println("It Looks Like That ID Is Taken. Please Choose Another.");
+                  employeeID = input.nextInt();
+                  taken = checkID(employeeID, root, false);
+               }
             }
             
             catch(InputMismatchException e){
@@ -267,24 +272,22 @@ public class BinarySearchTree {
          else{
          
             System.out.print("Please Provide A New Employee ID:\t");
-            int newID;
+            int newID = 0;
+
+            newID = input.nextInt();
+            boolean taken = checkID(newID, root, false);
             
-            boolean taken = true;
-            
-            while(taken == true){
+            while(taken == true) {
+               System.out.println("It Looks Like That ID Is Taken. Please Choose Another.");
                newID = input.nextInt();
-               taken = checkID(newID, root);
-               temp.employeeID = newID;
-            
+               taken = checkID(newID, root, false);
             }
-            System.out.print(taken);
+            temp.employeeID = newID;
          }
         
         
          System.out.println("\nEmployee Information Has Been Successfully Updated!");
          System.out.println("\n" + temp.employeeInfo());
-         
-         
          
          finished = 0;
          
@@ -373,45 +376,19 @@ public class BinarySearchTree {
       } // end of else
       return node;
    }
-    
-   public static boolean checkID(int employeeID, Employee root) {
-    
-      boolean taken = false;
+
+   public static boolean checkID(int employeeID, Employee root, boolean taken) {
     
       if (root != null) {
-         checkID(employeeID, root.left);
+         taken = checkID(employeeID, root.left, taken);
          if (root.employeeID == employeeID){
             taken = true;
          }
-         checkID(employeeID, root.right);
+         taken = checkID(employeeID, root.right, taken);
       }
       
       return taken;  
    } 
-    
-    /*public static boolean checkID (int employeeID){
-      boolean taken = false;
-                                           
-      Employee temp = root;
-    
-      while(temp != null) {
-        // pass right subtree as new tree
-         if (employeeID > temp.employeeID) {
-            temp = temp.right; 
-         }
-         // pass left subtree as new tree
-         else if (employeeID < temp.employeeID) {
-            temp = temp.left;
-         }
-         else {
-            taken = true; // if the ID is found
-         }
-        
-      }
-      
-     return taken;
-   }*/
-         
 
 } // end of lab6 class
 
@@ -458,6 +435,4 @@ class Employee {
     public void setPosition(String position) {
       this.position = position;
     }
-
-
 } // end node class employee
