@@ -1,10 +1,10 @@
 // Programmers: Ben Diskin, David Rukashaza-Hancock, T. Jake Holmes, Jaspreet Khatkar
 // CS 145: Face-To-Face
-// Date: 3/2/2023
+// Date: 3/6/2023
 // Assignment: Binary Search Tree
 // Reference: Chapter 17
 // Purpose: Use recursion to add/remove employees from a fictional database
-// Extra Credit: Iterative Employee Search Function IterativeSearch() line 180-208
+// Extra Credit: Iterative Employee Search Function IterativeSearch() line 180-208, try-catch
 
 
 import java.util.*;
