@@ -389,7 +389,30 @@ public class BinarySearchTree {
       return taken;  
    } 
     
+    /*public static boolean checkID (int employeeID){
+      boolean taken = false;
+                                           
+      Employee temp = root;
     
+      while(temp != null) {
+        // pass right subtree as new tree
+         if (employeeID > temp.employeeID) {
+            temp = temp.right; 
+         }
+         // pass left subtree as new tree
+         else if (employeeID < temp.employeeID) {
+            temp = temp.left;
+         }
+         else {
+            taken = true; // if the ID is found
+         }
+        
+      }
+      
+     return taken;
+   }*/
+         
+
 } // end of lab6 class
 
 class Employee {
