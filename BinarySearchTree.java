@@ -237,10 +237,10 @@ public class BinarySearchTree {
       int finished = 2;
       while(finished == 2){
       
-         while(choice < 1 || choice > 3){
+         while(choice < 1 || choice > 4){
          
             try{
-               System.out.print("What Information Would You Like To Update:\n1. First Name\n2. Last Name\n3. Position\t");
+               System.out.print("What Information Would You Like To Update:\n1. First Name\n2. Last Name\n3. Position\n4. Employee ID\t");
                choice = input.nextInt();
             }
             catch(InputMismatchException e){
@@ -257,14 +257,33 @@ public class BinarySearchTree {
             edit = input.next();
             temp.lastName = edit;
          }
-         else {
+         else if(choice == 3){
             System.out.print("Please Provide A New Position:\t");
+            edit = input.nextLine();
             edit = input.nextLine();
             temp.position = edit;
          }
+         
+         else{
+         
+            System.out.print("Please Provide A New Employee ID:\t");
+            int newID;
+            
+            boolean taken = true;
+            
+            while(taken == true){
+               newID = input.nextInt();
+               taken = checkID(newID, root);
+               temp.employeeID = newID;
+            
+            }
+            System.out.print(taken);
+         }
+        
         
          System.out.println("\nEmployee Information Has Been Successfully Updated!");
          System.out.println("\n" + temp.employeeInfo());
+         
          
          
          finished = 0;
@@ -354,6 +373,22 @@ public class BinarySearchTree {
       } // end of else
       return node;
    }
+    
+   public static boolean checkID(int employeeID, Employee root) {
+    
+      boolean taken = false;
+    
+      if (root != null) {
+         checkID(employeeID, root.left);
+         if (root.employeeID == employeeID){
+            taken = true;
+         }
+         checkID(employeeID, root.right);
+      }
+      
+      return taken;  
+   } 
+    
     
 } // end of lab6 class
 
